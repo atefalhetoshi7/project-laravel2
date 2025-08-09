@@ -80,8 +80,8 @@
                         </button>
                         <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
                             <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الإعدادات</a>
+                                <a href="{{ route('manager.profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
+                                <a href="{{ route('manager.settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الإعدادات</a>
                                 <div class="border-t border-gray-100"></div>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">تسجيل الخروج</a>
                             </div>
@@ -102,30 +102,14 @@
                                 <li>
                                     <a href="{{ route('manager.dashboard') }}" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md shadow-lg">لوحة التحكم</a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('manager.users') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إدارة المستخدمين</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.classes') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الصفوف والفصول</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.schedules') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.attendance') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.marks') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الدرجات والتقارير</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.messages') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الرسائل</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.announcements') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الإعلانات</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('manager.settings') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إعدادات النظام</a>
-                                </li>
+                                <li><a href="{{ route('manager.users') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إدارة المستخدمين</a></li>
+                                <li><a href="{{ route('manager.classes') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الصفوف والفصول</a></li>
+                                <li><a href="{{ route('manager.schedules') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a></li>
+                                <li><a href="{{ route('manager.attendance') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a></li>
+                                <li><a href="{{ route('manager.marks') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الدرجات والتقارير</a></li>
+                                <li><a href="{{ route('manager.messages') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الرسائل</a></li>
+                                <li><a href="{{ route('manager.announcements') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الإعلانات</a></li>
+                                <li><a href="{{ route('manager.settings') }}" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إعدادات النظام</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -149,9 +133,10 @@
                         </div>
                     </div>
 
+                    <!-- Stats grid -->
                     <div class="mt-8">
                         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                            <a href="#" class="group bg-gradient-to-br from-blue-100 via-blue-50 to-white hover:from-blue-200 hover:via-blue-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary block">
+                            <a href="{{ route('manager.users') }}?filter=students" class="group bg-gradient-to-br from-blue-100 via-blue-50 to-white hover:from-blue-200 hover:via-blue-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary block">
                                 <div class="p-5">
                                     <div class="flex items-center h-16">
                                         <div class="flex-shrink-0"><div class="w-8 h-8 bg-blue-200 group-hover:bg-blue-300 rounded-full flex items-center justify-center transition-colors duration-200"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7a4 4 0 00-4-4H7a4 4 0 00-4 4z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11a4 4 0 01-8 0" /></svg></div></div>
@@ -162,7 +147,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" class="group bg-gradient-to-br from-green-100 via-green-50 to-white hover:from-green-200 hover:via-green-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary block">
+                            <a href="{{ route('manager.users') }}?filter=teachers" class="group bg-gradient-to-br from-green-100 via-green-50 to-white hover:from-green-200 hover:via-green-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary block">
                                 <div class="p-5">
                                     <div class="flex items-center h-16">
                                         <div class="flex-shrink-0"><div class="w-8 h-8 bg-green-200 group-hover:bg-green-300 rounded-full flex items-center justify-center transition-colors duration-200"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg></div></div>
@@ -173,7 +158,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" class="group bg-gradient-to-br from-yellow-100 via-yellow-50 to-white hover:from-yellow-200 hover:via-yellow-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 block">
+                            <a href="{{ route('manager.attendance') }}" class="group bg-gradient-to-br from-yellow-100 via-yellow-50 to-white hover:from-yellow-200 hover:via-yellow-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 block">
                                 <div class="p-5">
                                     <div class="flex items-center h-16">
                                         <div class="flex-shrink-0"><div class="w-8 h-8 bg-yellow-200 group-hover:bg-yellow-300 rounded-full flex items-center justify-center transition-colors duration-200"><svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg></div></div>
@@ -184,7 +169,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" class="group bg-gradient-to-br from-pink-100 via-pink-50 to-white hover:from-pink-200 hover:via-pink-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 block">
+                            <a href="{{ route('manager.messages') }}" class="group bg-gradient-to-br from-pink-100 via-pink-50 to-white hover:from-pink-200 hover:via-pink-100 hover:to-white transition-all duration-200 overflow-hidden shadow rounded-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 block">
                                 <div class="p-5">
                                     <div class="flex items-center h-16">
                                         <div class="flex-shrink-0"><div class="w-8 h-8 bg-pink-200 group-hover:bg-pink-300 rounded-full flex items-center justify-center transition-colors duration-200"><svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-.55.55c-.1.1-.2.15-.35.15s-.25-.05-.35-.15L8 16z" /></svg></div></div>
@@ -195,6 +180,69 @@
                                     </div>
                                 </div>
                             </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent activity + Latest announcements -->
+                    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-br from-green-50 via-white to-blue-50 shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg leading-6 font-medium text-green-900 mb-4">النشاطات الحديثة</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3 space-x-reverse">
+                                        <div class="flex-shrink-0"><div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div></div>
+                                        <div class="min-w-0 flex-1"><p class="text-sm font-medium text-gray-900">تم إضافة مستخدم جديد</p><p class="text-sm text-gray-500">أ. سارة أحمد - معلمة</p></div>
+                                        <div class="flex-shrink-0 text-sm text-gray-400">منذ 10 دقائق</div>
+                                    </div>
+                                    <div class="flex items-start space-x-3 space-x-reverse">
+                                        <div class="flex-shrink-0"><div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div></div>
+                                        <div class="min-w-0 flex-1"><p class="text-sm font-medium text-gray-900">تحديث إعدادات النظام</p><p class="text-sm text-gray-500">تم تغيير كلمات المرور</p></div>
+                                        <div class="flex-shrink-0 text-sm text-gray-400">منذ ساعة</div>
+                                    </div>
+                                    <div class="flex items-start space-x-3 space-x-reverse">
+                                        <div class="flex-shrink-0"><div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div></div>
+                                        <div class="min-w-0 flex-1"><p class="text-sm font-medium text-gray-900">نشر إعلان جديد</p><p class="text-sm text-gray-500">إعلان عن الاجتماع الشهري</p></div>
+                                        <div class="flex-shrink-0 text-sm text-gray-400">منذ 3 ساعات</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 via-white to-pink-50 shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg leading-6 font-medium text-blue-900 mb-4">آخر الإعلانات</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3 space-x-reverse"><div class="flex-shrink-0"><div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div></div><div class="min-w-0 flex-1"><p class="text-sm font-medium text-gray-900">اجتماع أولياء الأمور</p><p class="text-sm text-gray-500">يوم الخميس الساعة 4:00 مساءً</p></div><div class="flex-shrink-0 text-sm text-gray-400">منذ ساعتين</div></div>
+                                    <div class="flex items-start space-x-3 space-x-reverse"><div class="flex-shrink-0"><div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div></div><div class="min-w-0 flex-1"><p class="text-sm font-medium text-gray-900">بداية الفصل الثاني</p><p class="text-sm text-gray-500">يبدأ يوم الأحد القادم</p></div><div class="flex-shrink-0 text-sm text-gray-400">أمس</div></div>
+                                    <div class="flex items-start space-x-3 space-x-reverse"><div class="flex-shrink-0"><div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div></div><div class="min-w-0 flex-1"><p class="text-sm font-medium text-gray-900">امتحانات نصف الفصل</p><p class="text-sm text-gray-500">تبدأ الأسبوع القادم</p></div><div class="flex-shrink-0 text-sm text-gray-400">منذ 3 أيام</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick actions -->
+                    <div class="mt-8">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">الإجراءات السريعة</h3>
+                        <div class="bg-white shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                                    <a href="{{ route('manager.users') }}?action=addUser" class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary hover:bg-gray-50 transition-colors duration-200 rounded-lg border border-gray-200">
+                                        <div><span class="rounded-lg inline-flex p-3 bg-primary text-white"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg></span></div>
+                                        <div class="mt-4"><h3 class="text-sm font-medium text-gray-900">إضافة مستخدم جديد</h3><p class="text-xs text-gray-500 mt-1">إضافة حساب مستخدم جديد</p></div>
+                                    </a>
+                                    <a href="{{ route('manager.classes') }}?action=addClass" class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary hover:bg-gray-50 transition-colors duration-200 rounded-lg border border-gray-200">
+                                        <div><span class="rounded-lg inline-flex p-3 bg-secondary text-white"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg></span></div>
+                                        <div class="mt-4"><h3 class="text-sm font-medium text-gray-900">إنشاء وإدارة الفصول</h3><p class="text-xs text-gray-500 mt-1">إضافة أو تعديل أو حذف الفصول الدراسية</p></div>
+                                    </a>
+                                    <a href="{{ route('manager.announcements') }}" class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary hover:bg-gray-50 transition-colors duration-200 rounded-lg border border-gray-200">
+                                        <div><span class="rounded-lg inline-flex p-3 bg-accent text-white"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg></span></div>
+                                        <div class="mt-4"><h3 class="text-sm font-medium text-gray-900">نشر إعلان جديد</h3><p class="text-xs text-gray-500 mt-1">إصدار إعلان لجميع المستخدمين</p></div>
+                                    </a>
+                                    <a href="{{ route('manager.attendance') }}" class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary hover:bg-gray-50 transition-colors duration-200 rounded-lg border border-gray-200">
+                                        <div><span class="rounded-lg inline-flex p-3 bg-purple-600 text-white"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></span></div>
+                                        <div class="mt-4"><h3 class="text-sm font-medium text-gray-900">تسجيل الحضور</h3><p class="text-xs text-gray-500 mt-1">تسجيل حضور الطلاب</p></div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

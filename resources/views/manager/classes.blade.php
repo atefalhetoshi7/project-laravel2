@@ -1,5 +1,5 @@
 @php
-    // Use the static design as base; data can be injected later
+/** @var \Illuminate\Support\Collection $classesByGrade */
 @endphp
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -9,6 +9,7 @@
     <title>الصفوف والفصول - مدارِك</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('Madarek Front End/المدير/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-arabic bg-gray-50">
     <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
@@ -57,32 +58,46 @@
                         </div>
                     </div>
 
-                    <div id="classesGrid" class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {{-- Static demo cards; real data can be injected here later --}}
-                        <div class="bg-white overflow-hidden shadow rounded-lg" data-class-id="1">
-                            <div class="px-4 py-5 sm:p-6">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <h3 class="text-lg font-medium text-gray-900 class-name">الصف الأول الابتدائي</h3>
-                                        <p class="text-sm text-gray-500 sections-summary">3 فصول - 85 طالب</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <div class="space-y-2 sections-list">
-                                        <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                                            <span class="text-sm text-gray-900">الأول أ</span>
-                                            <div class="flex items-center gap-2">
-                                                <span class="text-xs text-gray-500">28 طالب</span>
-                                                <button title="تعديل الفصل" class="p-1 text-blue-500 hover:bg-blue-100 rounded transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13zm-6 6h6v-2a2 2 0 012-2h2v6H3v-2a2 2 0 012-2z" /></svg></button>
-                                                <button title="حذف الفصل" class="p-1 text-red-500 hover:bg-red-100 rounded transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                    @foreach ($classesByGrade as $gradeLevel => $classes)
+                        <h3 class="mt-6 text-lg font-semibold text-gray-800">الصف {{ $gradeLevel }}</h3>
+                        <div class="mt-3 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            @foreach ($classes as $class)
+                                <div class="bg-white overflow-hidden shadow rounded-lg" data-class-id="{{ $class->id }}">
+                                    <div class="px-4 py-5 sm:p-6">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h4 class="text-lg font-medium text-gray-900 class-name">{{ $class->display_name ?? ("الصف " . $class->grade_level . " - الفصل " . $class->class_number) }}</h4>
+                                                <p class="text-sm text-gray-500 sections-summary">
+                                                    {{ $class->student_registrations_count }} طالب
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <div class="space-y-2 sections-list">
+                                                @foreach (($class->sections ?? []) as $section)
+                                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                                        <span class="text-sm text-gray-900">{{ $section->name }}</span>
+                                                        <div class="flex items-center gap-2">
+                                                            <span class="text-xs text-gray-500">{{ $section->students_count ?? 0 }} طالب</span>
+                                                            <button title="تعديل الفصل" class="p-1 text-blue-500 hover:bg-blue-100 rounded transition">
+                                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13zm-6 6h6v-2a2 2 0 012-2h2v6H3v-2a2 2 0 012-2z" /></svg>
+                                                            </button>
+                                                            <button title="حذف الفصل" class="p-1 text-red-500 hover:bg-red-100 rounded transition">
+                                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="w-full bg-gray-100 hover:bg-gray-200 text-primary py-2 px-4 rounded-md text-sm font-medium">إضافة فصل جديد</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-3"><button class="w-full bg-gray-100 hover:bg-gray-200 text-primary py-2 px-4 rounded-md text-sm font-medium">إضافة فصل جديد</button></div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </main>
