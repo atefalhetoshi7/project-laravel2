@@ -70,6 +70,7 @@ Route::middleware(['auth', 'role:manager'])->prefix('manager')->group(function (
     Route::get('/dashboard', [ManagerController::class, 'dashboard'])->name('manager.dashboard');
     Route::get('/users', [ManagerController::class, 'users'])->name('manager.users');
     Route::get('/classes', [ManagerController::class, 'classes'])->name('manager.classes');
+    Route::post('/classes', [ManagerController::class, 'storeClass'])->name('manager.classes.store');
     Route::get('/attendance', [ManagerController::class, 'attendance'])->name('manager.attendance');
     Route::get('/messages', [ManagerController::class, 'messages'])->name('manager.messages');
     Route::get('/announcements', [ManagerController::class, 'announcements'])->name('manager.announcements');

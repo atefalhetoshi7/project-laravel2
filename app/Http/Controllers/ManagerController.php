@@ -156,4 +156,23 @@ class ManagerController extends Controller
     {
         return view('manager.profile');
     }
+
+    public function storeClass(Request $request)
+    {
+        $validated = $request->validate([
+            'grade_level' => ['required', 'integer', 'min:1', 'max:12'],
+            'class_number' => ['required', 'integer', 'min:1', 'max:20'],
+            'display_name' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $class = new ClassModel();
+        $class->grade_level = $validated['grade_level'];
+        $class->class_number = $validated['class_number'];
+        if (!empty($validated['display_name'])) {
+            $class->display_name = $validated['display_name'];
+        }
+        $class->save();
+
+        return redirect()->route('manager.classes')->with('status', 'تم إنشاء الصف بنجاح');
+    }
 }

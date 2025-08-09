@@ -9,20 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-arabic bg-gray-50">
-    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
-        <div class="mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-10 rounded-full">
-                        <span class="lg:max-w-none lg:whitespace-normal mr-3 text-xl font-bold text-gray-800 leading-relaxed">
-                            <span class="hidden sm:inline-block">مدارِك - </span> مدرسة الصِّديقة
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    @include('layouts.manager-header')
 
     <div class="flex h-screen bg-gray-50">
         <nav class="hidden lg:flex lg:flex-shrink-0">
@@ -78,42 +65,33 @@
                                     <input type="text" name="q" value="{{ $searchTerm }}" placeholder="البحث بالاسم او رقم القيد" class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" />
                                 </div>
                                 <div class="flex items-end">
-                                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md text-sm font-medium">تطبيق</button>
-                                </div>
-                                <div class="flex items-end">
-                                    <a href="{{ route('manager.users') }}" class="w-full text-center bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md text-sm font-medium">مسح الفلاتر</a>
+                                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">تطبيق</button>
                                 </div>
                             </div>
                         </form>
-                    </div>
 
-                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
-                        <div class="px-4 py-5 sm:p-6">
+                        <div class="px-4 pb-6 sm:px-6">
                             <div class="overflow-x-auto">
-                                <table class="min-w-full divide-y divide-gray-200 text-xs">
+                                <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">المستخدم</th>
-                                            <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الدور</th>
-                                            <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">البريد الإلكتروني</th>
-                                            <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">رقم الهاتف</th>
-                                            <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">تاريخ الإنشاء</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الاسم</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">البريد</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الدور</th>
+                                            <th class="px-6 py-3"></th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200 text-xs">
-                                        @forelse ($users as $user)
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        @foreach ($users as $user)
                                             <tr>
-                                                <td class="px-3 py-4 text-right">{{ $user->full_name }}</td>
-                                                <td class="px-3 py-4 text-right">{{ $user->role }}</td>
-                                                <td class="px-3 py-4 text-right">{{ $user->email }}</td>
-                                                <td class="px-3 py-4 text-right">{{ $user->phone ?? '—' }}</td>
-                                                <td class="px-3 py-4 text-right">{{ $user->created_at?->format('Y-m-d') }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $user->full_name }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->email }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->role }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                    <a href="#" class="text-primary hover:text-primary-dark">عرض</a>
+                                                </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="5" class="px-3 py-4 text-center text-gray-500">لا توجد نتائج</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

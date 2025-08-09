@@ -11,18 +11,7 @@
     <link rel="stylesheet" href="{{ asset('Madarek Front End/المدير/styles.css') }}">
 </head>
 <body class="font-arabic bg-gray-50">
-    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
-        <div class="mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-10 rounded-full">
-                        <span class="lg:max-w-none lg:whitespace-normal mr-3 text-xl font-bold text-gray-800 leading-relaxed"><span class="hidden sm:inline-block">مدارِك - </span> مدرسة الصِّديقة</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    @include('layouts.manager-header')
 
     <div class="flex h-screen bg-gray-50">
         <nav class="hidden lg:flex lg:flex-shrink-0">
