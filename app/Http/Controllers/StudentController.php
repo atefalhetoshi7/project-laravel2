@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     public function dashboard()
     {
-        return view('student.dashboard');
+        return redirect()->route('static.show', ['role' => 'student', 'path' => 'index']);
     }
 
     public function schedule()

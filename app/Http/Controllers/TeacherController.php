@@ -8,7 +8,7 @@ class TeacherController extends Controller
 {
     public function dashboard()
     {
-        return view('teacher.dashboard');
+        return redirect()->route('static.show', ['role' => 'teacher', 'path' => 'index']);
     }
 
     public function classes()

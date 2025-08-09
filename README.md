@@ -59,3 +59,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Static pages preview via Laravel
+
+Your original static HTML is available under Laravel at routes like:
+
+- `/static/manager/index` → serves `public/Madarek Front End/المدير/index.html`
+- `/static/parent/index` → serves `public/Madarek Front End/ولي الامر/index.html`
+- `/static/student/موادي/الرئيسية` → serves nested paths as well
+
+The controller injects a `<base href>` automatically so relative CSS/JS/image paths resolve correctly.

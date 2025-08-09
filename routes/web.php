@@ -47,9 +47,9 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
-
-
-// مسارات حسب الدور
+use App\Http\Controllers\StaticPageController;
+ 
+ // مسارات حسب الدور
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/students', [AdminController::class, 'students'])->name('admin.students');
@@ -97,6 +97,15 @@ Route::middleware(['auth', 'role:parent'])->prefix('parent')->group(function () 
 // Front-end developer navigation (Blade only)
 Route::prefix('fe')->group(function () {
     Route::view('/', 'fe.index')->name('fe.home');
+});
+
+// Preview static pages (no auth) directly from public/Madarek Front End
+Route::prefix('static')->group(function () {
+    // e.g. /static/manager/index maps to public/Madarek Front End/المدير/index.html
+    // supports nested paths like /static/parent/موادي/الرئيسية
+    Route::get('/{role}/{path?}', [StaticPageController::class, 'show'])
+        ->where(['role' => 'admin|manager|teacher|student|parent|staff|auth', 'path' => '.*'])
+        ->name('static.show');
 });
 
 // Preview routes (no auth) to quickly see the new Blade pages
