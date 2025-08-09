@@ -112,6 +112,14 @@ Route::prefix('static')->group(function () {
 Route::prefix('preview')->group(function () {
     Route::get('/manager/dashboard', [ManagerController::class, 'dashboard']);
     Route::get('/manager/users', [ManagerController::class, 'users']);
+    Route::get('/manager/classes', [ManagerController::class, 'classes']);
+    Route::get('/manager/attendance', [ManagerController::class, 'attendance']);
+    Route::get('/manager/messages', [ManagerController::class, 'messages']);
+    Route::get('/manager/announcements', [ManagerController::class, 'announcements']);
+    Route::get('/manager/schedules', [ManagerController::class, 'schedules']);
+    Route::get('/manager/marks', [ManagerController::class, 'marks']);
+    Route::get('/manager/settings', [ManagerController::class, 'settings']);
+    Route::get('/manager/profile', [ManagerController::class, 'profile']);
 });
 
 // Authentication routes
