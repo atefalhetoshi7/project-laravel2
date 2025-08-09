@@ -8,7 +8,7 @@ class ParentController extends Controller
 {
     public function dashboard()
     {
-        return view('parent.dashboard');
+        return redirect()->route('static.show', ['role' => 'parent', 'path' => 'index']);
     }
 
     public function children()
